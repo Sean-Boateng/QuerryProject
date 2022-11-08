@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render
 from django.db.models import Count
 from django.core.exceptions import ObjectDoesNotExist
@@ -65,8 +66,6 @@ def problem_one(request):
      print(f'{student.first_name} {student.last_name} {student.gpa}')
     
 
-
-
   return complete(request)
 
 
@@ -105,8 +104,10 @@ SELECT `school_db_student`.`id`,
 # Order by hire date ascending
 # Print out the instructor's full name and hire date to the terminal
 def problem_two(request):
-
-    return complete(request)
+  instructors = Instructor.objects.filter(hire_date__lt="2010-01-01") 
+  for teachers in instructors:
+    print(f'{teachers.first_name} {teachers.last_name} {teachers.hire_date}')
+  return complete(request)
 
 
 # Supporting Query Method Documentation:
